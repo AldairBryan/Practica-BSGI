@@ -7,49 +7,21 @@ export default function colaboradorColumns() {
         () => [
             {
                 Header: "Nombres",
-                accessor: "colnom",     
+                accessor: "colnom",
+                Filter: SelectColumnFilter,
+                filter: 'includes',            
             },
             {
                 Header: "Apellidos",
                 accessor: "colape",     
             },
             {
-                Header: "Empresa",
-                accessor: "pagopeemp",
-                Filter: SelectColumnFilter,
-                filter: 'includes',                   
+                Header: "Fecha de Nacimiento",
+                accessor: "colfecnac",            
             },
             {
-                Header: "Cant. Dias",
-                accessor: "pagopecandia",                
-            },
-            {
-                Header: "Costo Dia",
-                accessor: "pagopecosdia",
-                Cell: ({ row }) => `S/.${row.values.pagopecosdia}`                 
-            },
-            {
-                Header: "Fecha Inicio",
-                accessor: "pagopeperini",                
-            },
-            {
-                Header: "Fecha Fin",
-                accessor: "pagopeperfin",                
-            },
-            {
-                Header: "Neto Pago",
-                accessor: "pagopenetpag",
-                Cell: ({ row }) => `S/.${row.values.pagopenetpag}`
-            },
-            {
-                Header: "Fecha Pago",
-                accessor: "pagopefec",                
-            },
-            {
-                Header: "Estado",
-                accessor: "pagopeestpagope.estpagopedes",
-                Filter: SelectColumnFilter,
-                filter: 'includes',                
+                Header: "Posicion",
+                accessor: "colpos",                
             },
         ],
         []
