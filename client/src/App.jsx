@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-
+import Colaboradores from './pages/Colaboradores/Colaboradores';
 import Login from './components/Login';
 import SideBarMenu from './components/SideBarMenu';
 import Header from './components/Header';
-
+import { ToastContainer } from 'react-toastify';
 function App() {
 
   const [isLoggedIn, setLoggedIn] = useState(true);
@@ -31,7 +31,7 @@ function App() {
                   {/*<Route path='/' element={<Monitoreo />} />*/}
                   <Route path='/' element={<Colaboradores />} />
                   <Route path='/colaboradores' element={<Colaboradores />} />
-                  <Route path='/contactos' element={<Contactos />} />
+                  {/*<Route path='/contactos' element={<Contactos />} />
                   <Route path='/contratos' element={<Contratos />} />
                   <Route path='/horarios' element={<Horarios />} />
 
