@@ -1,0 +1,68 @@
+:root {
+    --VerdePrimario: #009A43;
+    --VerdeIntermedio:#3FAB6E;
+    --VerdeClaro: #C8DED1;
+    --Blanco: #FFFFFF;
+    --GrisClaro: #EDEDED;
+    --GrisIntermedio: #A2A2A2;
+    --GrisOscuro: #555555;
+    --Negro: #000000;
+}
+
+.login-contenedor{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--GrisClaro);
+    height: 100vh;
+}
+
+.login-contenedor-form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--Blanco);
+    flex-direction: column;
+    padding: 2em;
+    /**style*/
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.login-contenedor-form-title{
+    text-align: center;
+}
+.login-contenedor-form-title h3{
+    color: #009A43;
+    margin-top: 10px;
+    font-size: 110%;
+}
+
+.login-contenedor-form-title img{
+    width: 150px;
+    height: 100px;
+}
+
+.login-contenedor-form-content{
+    color:#009A43;
+}
+
+.btn.btn-custom {
+    background-color: var(--main-color);
+}
+
+.btn.btn-custom:hover,
+.btn.btn-custom:focus {
+    background-color: var(--main-color) !important;
+    color: rgb(10, 117, 57);
+}
+
+.text_button_login{
+    color: #ffffff;
+}
+
+.emailfeedback{
+    font-size: 10px;
+    font-weight: bold;
+    color: red;
+}
