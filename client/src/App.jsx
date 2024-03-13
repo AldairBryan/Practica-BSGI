@@ -8,7 +8,7 @@ import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
 function App() {
 
-  const [isLoggedIn, setLoggedIn] = useState(true);
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
   const handleLogin = () => {
     setLoggedIn(true);
@@ -31,7 +31,7 @@ function App() {
                   {/*<Route path='/' element={<Monitoreo />} />*/}
                   <Route path='/' element={<Colaboradores />} />
                   <Route path='/colaboradores' element={<Colaboradores />} />
-                  {/*<Route path='/contactos' element={<Contactos />} />
+                  <Route path='/contactos' element={<Contactos />} />
                   <Route path='/contratos' element={<Contratos />} />
                   <Route path='/horarios' element={<Horarios />} />
 
