@@ -78,13 +78,13 @@ function Colaboradores() {
     </div>
 
     <ToastContainer />
-    
+    {/* }
     <Modal toggle={handleEdit}>
     </Modal>
 
     <Modal active={activeFormDelete} toggle={handleDelete}>
       <FormDeleteColaborador toggle={handleDelete} colaboradorId={selectedIdCol} loadColaboradores={loadColaboradores} /> 
-    </Modal>
+  </Modal>*/}
     </>
   )
 }
