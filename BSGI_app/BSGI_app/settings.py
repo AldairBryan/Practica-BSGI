@@ -55,6 +55,24 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        #apply for all view classes:"No one can see anything"
+        #needs to be autenticated
+        #needs to be a staff member
+        #needs to be the right permissions to see
+        #note: if you need to specify some editions, do in a specific view, not here
+        'Gestion.permissions.IsStaffGeneralEditor',
+    ],
+    # Otras configuraciones de Django REST framework...
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        #allow create tokens
+        'rest_framework.authentication.TokenAuthentication',
+        #allow to get sessions
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
+
 ROOT_URLCONF = 'BSGI_app.urls'
 
 TEMPLATES = [
