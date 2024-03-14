@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './App.css'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import Colaboradores from './pages/Colaboradores/Colaboradores';
+import Contratos from './pages/Contratos/Contratos';
 import Login from './components/Login';
 import SideBarMenu from './components/SideBarMenu';
 import Header from './components/Header';
@@ -31,9 +32,8 @@ function App() {
                   {/*<Route path='/' element={<Monitoreo />} />*/}
                   <Route path='/' element={<Colaboradores />} />
                   <Route path='/colaboradores' element={<Colaboradores />} />
-                  <Route path='/contactos' element={<Contactos />} />
                   <Route path='/contratos' element={<Contratos />} />
-                  <Route path='/horarios' element={<Horarios />} />
+                  {/*<Route path='/horarios' element={<Horarios />} />
 
                   {/* <Route path='/tareos/exportar' element={<ExportTareos />} />
                   <Route path='/alquileres' element={<Alquileres />} />

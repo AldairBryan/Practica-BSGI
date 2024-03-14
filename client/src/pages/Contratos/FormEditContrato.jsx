@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createContrato, getAllContratos, getContrato, updateContrato } from '../../api/Contrato.api';
+import { getContrato, updateContrato } from '../../api/Contrato.api';
 import { getAllColaboradores} from '../../api/Colaborador.api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -40,6 +40,16 @@ function FormEditContrato() {
     }
   });
 
+  
+  const loadColaboradores = async () => {
+    try {
+        const res = await getAllColaboradores();
+        setColaboradores(res);
+    } catch (error) {
+        toast.error(`Error al cargar los colaboradores: ${error.message}`);
+    }
+};
+
   useEffect(() => {
     async function loadContrato() {
       try {
@@ -56,6 +66,7 @@ function FormEditContrato() {
       }
     }
     loadContrato();
+    loadColaboradores();
     }, [params.id]
   );
 

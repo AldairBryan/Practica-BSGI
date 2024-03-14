@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { createContrato, getAllContratos } from '../../api/Contrato.api';
+import { createHorario, getAllHorarios } from '../../api/Horario.api';
 import { getAllColaboradores} from '../../api/Colaborador.api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 function FormCreateContrato() {
 
     /*Datos de regiones*/ 
-    const [contratos, setContratos] = useState([]);
+    const [horarios, setHorarios] = useState([]);
     const [colaboradores, setColaboradores] = useState([]);
     /*Estado de los registros de mi formulario*/
     const {
@@ -25,24 +25,24 @@ function FormCreateContrato() {
     };
 
     const handleCancelar = () => {
-        navigate('/contratos');
+        navigate('/horarios');
     };
     
     // Función llamada al enviar el formulario
     const onSubmit = handleSubmit(async data => {
         try {
-            const res = await createContrato(data);
-            navigate('/contratos');
-            toast.success('Contrato creado con éxito');
+            const res = await createHorario(data);
+            navigate('/horarios');
+            toast.success('Horario creado con éxito');
         } catch (error) {
-            toast.error(`Error al crear el contacto: ${error.message}`);
+            toast.error(`Error al crear el horario: ${error.message}`);
         }
     });
 
-    const loadContratos = async () => {
+    const loadHorarios = async () => {
         try {
-            const res = await getAllContratos();
-            setContratos(res);
+            const res = await getAllHorarios();
+            setHorarios(res);
         } catch (error) {
             toast.error(`Error al cargar los contratos: ${error.message}`);
         }
@@ -58,7 +58,7 @@ function FormCreateContrato() {
 
     // Cargar las regiones
     useEffect(() => {
-        loadContratos();
+        loadHorarios();
         loadColaboradores();
       }, []
     );
@@ -66,54 +66,40 @@ function FormCreateContrato() {
     // Renderizar
     return (
         <>
-        <h2>Registrar nuevo Contrato</h2>
+        <h2>Registrar nuevo Horario</h2>
         <form onSubmit={onSubmit}>
         <label>
-              Fecha de Inicio
+            Dia
+            <input
+              className='input-text'
+              type="text"
+              placeholder='Dia'
+              {...register('hordia', { required: true,
+                validate: (value) => validateMaxSize(value),
+              })}
+            />
+            {errors.hordia?.type === 'required' && <p className='text-error'>*El campo Dia es requerido</p>}
+            {errors.hordia?.type === 'validate' && <p className='text-error'>*El campo Dia no debe superar los 40 caracteres</p>}    
+          </label>
+        <label>
+              Hora de Inicio
               <input
                   className='input-text'
-                  type="date"
-                  {...register('contrfecini', { required: true })}
+                  type="time"
+                  {...register('horini', { required: true })}
               />
-              {errors.contrfecini?.type === 'required' && <p className='text-error'>*El campo Fecha de Inicio es requerido</p>}
+              {errors.horini?.type === 'required' && <p className='text-error'>*El campo Hora de Inicio es requerido</p>}
             </label>
-
             <label>
-              Fecha de Fin
+              Hora de Fin
               <input
                   className='input-text'
-                  type="date"
-                  {...register('contrfecfin', { required: true })}
+                  type="time"
+                  {...register('horfin', { required: true })}
               />
-              {errors.contrfecfin?.type === 'required' && <p className='text-error'>*El campo Fecha de Fin es requerido</p>}
+              {errors.horfin?.type === 'required' && <p className='text-error'>*El campo Hora de Fin es requerido</p>}
             </label>
-          <label>
-            EPS
-            <input
-              className='input-text'
-              type="text"
-              placeholder='EPS'
-              {...register('contreps', { required: true,
-                validate: (value) => validateMaxSize(value),
-              })}
-            />
-            {errors.contreps?.type === 'required' && <p className='text-error'>*El campo EPS es requerido</p>}
-            {errors.contreps?.type === 'validate' && <p className='text-error'>*El campo EPS no debe superar los 40 caracteres</p>}    
-          </label>
-
-          <label>
-            Seguro
-            <input
-              className='input-text'
-              type="text"
-              placeholder='Seguro'
-              {...register('contrseg', { required: true,
-                validate: (value) => validateMaxSize(value),
-              })}
-            />
-            {errors.contrseg?.type === 'required' && <p className='text-error'>*El campo seguro es requerido</p>}
-            {errors.contrseg?.type === 'validate' && <p className='text-error'>*El campo seguro no debe superar los 40 caracteres</p>}    
-          </label>
+          
           <label>
                 Colaborador
                 <select className='input-select'

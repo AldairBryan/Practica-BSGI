@@ -1,53 +1,52 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BsFillPlusCircleFill } from "react-icons/bs";
-import { getAllContratos } from '../../api/Contrato.api';
-import contratoColumns from '../../Utils/ComponentesUtils/contratoColumns';
+import { getAllHorarios } from '../../api/Horario.api';
+import horarioColumns from '../../Utils/ComponentesUtils/horarioColumns';
 import  Modal  from '../../components/Modal';
 import { Table } from '../../components/Tabla/TableStyle';
-//import { FormEditResponsable } from './FormEditResponsable';
-import { FormDeleteContrato } from './FormDeleteContrato';
+import { FormDeleteHorario } from './FormDeleteHorario';
 import '../../styles/ContenedorComp.css';
 
 //import 'react-toastify/dist/ReactToastify.css';
 import { toast, ToastContainer } from 'react-toastify';
 
-function Contratos() {
+function Horarios() {
 
   const navigate = useNavigate();
 
   /*Datos de proyectos para la tabla*/    
-  const [contratos, setContratos] = useState([]);   
+  const [horarios, setHorarios] = useState([]);   
 
   /*Estado del formulario para create, edit y delete*/
   const [activeFormDelete, setActiveFormDelete] = useState(false);
   
-  const [selectedIdCon, setSelectedIdCon] = useState();
+  const [selectedIdHor, setSelectedIdHor] = useState();
   
   /*Funciones */
   const handleCreate = () => {
-    navigate('/contratos/create');
+    navigate('/horarios/create');
   }
-  const handleEdit = (idContrato) => {
-    navigate(`/contratos/${idContrato}/edit`);
+  const handleEdit = (idHorario) => {
+    navigate(`/horarios/${idHorario}/edit`);
   };
-  const handleDelete = (idContrato) => {
-    setSelectedIdCon(idContrato);
+  const handleDelete = (idHorario) => {
+    setSelectedIdHor(idHorario);
     setActiveFormDelete(!activeFormDelete);
   };
   
-  const loadContratos = async () => {
+  const loadHorarios = async () => {
     try {
-      const res = await getAllContratos();
-      setContratos(res);
+      const res = await getAllHorarios();
+      setHorarios(res);
       console.log(res)
     } catch (error) {
-      toast.error(`Error al cargar los contactos: ${error.message}`);
+      toast.error(`Error al cargar los horarios: ${error.message}`);
     }
   };
 
   useEffect(() => {
-    loadContratos();
+    loadHorarios();
   }, []);
 
 
@@ -55,7 +54,7 @@ function Contratos() {
     <>   
     <div className='contenedor-componente'>
       <div className='contenedor-titulo'>
-        <h2>Contratos</h2>
+        <h2>Horarios</h2>
         <div className='btn-agregar' onClick={handleCreate}>
           <BsFillPlusCircleFill
             color='green'
@@ -64,14 +63,14 @@ function Contratos() {
           <h3>Agregar</h3>
         </div>
       </div>
-      {/* Tabla de Contratos */}
+      {/* Tabla de Horarios */}
       <Table
-        columns={contratoColumns()}
-        data={contratos}
-        nombre={'contratos'}
+        columns={horarioColumns()}
+        data={horarios}
+        nombre={'horarios'}
         onEdit={handleEdit}
         onDelete={handleDelete}
-        onEditName={'contrcod'}
+        onEditName={'horcod'}
         clickableRows={true}
       />         
     </div>
@@ -82,10 +81,10 @@ function Contratos() {
     </Modal>
 
     <Modal active={activeFormDelete} toggle={handleDelete}>
-      <FormDeleteContrato toggle={handleDelete} contratoId={selectedIdCon} loadContratos={loadContratos} /> 
+      <FormDeleteHorario toggle={handleDelete} horarioId={selectedIdHor} loadHorarios={loadHorarios} /> 
     </Modal>
     </>
   )
 }
 
-export default Contratos
+export default Horarios

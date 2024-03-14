@@ -8,7 +8,7 @@ import { BiSolidShow, BiSolidHide } from 'react-icons/bi'
 import { useNavigate } from 'react-router-dom';
 import getToken from '../api/Login.api';
 import '../styles/Login.css'
-//import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 import '../styles/General.css'
 
 const Login = ({ onLogin }) => {
@@ -74,7 +74,7 @@ const Login = ({ onLogin }) => {
         <div className='login-contenedor'>
             <div className='login-contenedor-form'>
                 <div className='login-contenedor-form-title'>
-                    <h3>Gestión Administrativa<br/> Drews Rent</h3>
+                    <h3>Sistema BGSI</h3>
                 </div>
                 
                 <div className='login-contenedor-form-content'>

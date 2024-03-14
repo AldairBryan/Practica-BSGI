@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { getContrato, deleteContrato } from '../../api/Contrato.api';
+import { getHorario, deleteHorario } from '../../api/Horario.api';
 import { toast } from 'react-toastify';
 
-function FormDeleteContrato({ toggle, contratoId, loadContratos }) {
+function FormDeleteHorario({ toggle, horarioId, loadHorarios }) {
 
     /*Datos del colaborador seleccionado*/ 
-    const [contrato, setContrato] = useState([]);
+    const [horario, setHorario] = useState([]);
 
     /*Estado de los registros de mi formulario*/
     const {
@@ -18,33 +18,33 @@ function FormDeleteContrato({ toggle, contratoId, loadContratos }) {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-            const res = await deleteContrato(contrato.contrcod);
+            const res = await deleteHorario(horario.horcod);
             toggle();
-            loadContratos();
-            toast.success("Contrato eliminado");
+            loadHorarios();
+            toast.success("Horario eliminado");
         } catch (error) {
-            toast.error(`Error al eliminar el contrato: ${error.message}`);
+            toast.error(`Error al eliminar el horario: ${error.message}`);
         }
     });
 
     useEffect(() => {
-        async function loadContrato() {
+        async function loadHorario() {
             try {
-                const res = await getContrato(contratoId);
-                setContrato(res.data);    
+                const res = await getHorario(horarioId);
+                setHorario(res.data);    
             } catch (error) {
-                toast.error(`Error al cargar los contratos: ${error.message}`);
+                toast.error(`Error al cargar los horarios: ${error.message}`);
             }
         }
-        loadContrato();
-    }, [contratoId]
+        loadHorario();
+    }, [horarioId]
     );
 
     return (
         <>
-        <h3>¿Está seguro que quiere eliminar el contrato 
+        <h3>¿Está seguro que quiere eliminar el horario 
         <br />
-            "{contrato?.contrfecini+" "+contrato?.contrfecfin}"?</h3>
+            "{horario?.hordia}"?</h3>
         <form onSubmit={onSubmit}>
             <div className='contenedor-btn'>
                 <button className='btn-cancelar' type='button' onClick={toggle}>Cancelar</button>
@@ -55,4 +55,4 @@ function FormDeleteContrato({ toggle, contratoId, loadContratos }) {
     );
 }
 
-export { FormDeleteContrato };
+export { FormDeleteHorario };
