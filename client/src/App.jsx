@@ -5,6 +5,7 @@ import Colaboradores from './pages/Colaboradores/Colaboradores';
 import Contratos from './pages/Contratos/Contratos';
 import Horarios from './pages/Horarios/Horarios'
 import HorarioDetalle from './pages/Horarios/HorarioDetalle'
+import FormCreateHorario from './pages/Horarios/FormCreateHorario';
 import Login from './components/Login';
 import SideBarMenu from './components/SideBarMenu';
 import Header from './components/Header';
@@ -36,7 +37,7 @@ function App() {
                   <Route path='/contratos' element={<Contratos />} />
                   <Route path='/horarios' element={<Horarios />} />
                   <Route path='/horarios/:id' element={<HorarioDetalle />} />
-
+                  <Route path='/horarios/create' element={<FormCreateHorario />} />
                 </Routes>
                 <ToastContainer />
               </SideBarMenu>

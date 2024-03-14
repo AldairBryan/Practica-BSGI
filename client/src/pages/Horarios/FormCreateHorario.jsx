@@ -5,7 +5,7 @@ import { getAllColaboradores} from '../../api/Colaborador.api';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-function FormCreateContrato() {
+function FormCreateHorario() {
 
     /*Datos de regiones*/ 
     const [horarios, setHorarios] = useState([]);
@@ -51,6 +51,7 @@ function FormCreateContrato() {
         try {
             const res = await getAllColaboradores();
             setColaboradores(res);
+            console.log(res);
         } catch (error) {
             toast.error(`Error al cargar los colaboradores: ${error.message}`);
         }
@@ -108,7 +109,7 @@ function FormCreateContrato() {
                     >
                     <option value='' >Seleccionar Colaborador</option>
                     {colaboradores && colaboradores.map(colaborador =>(
-                        <option value={colaborador.colcod} key={colaborador.colcod}>{colaborador.openom+" "+colaborador.opeape}</option>
+                        <option value={colaborador.colcod} key={colaborador.colcod}>{colaborador.colnom+" "+colaborador.colape}</option>
                     ))}
                 </select>
                 {errors.pagopeopecod?.type === 'required' && <p className='text-error'>*El campo Colaborador es requerido</p>}  
@@ -116,7 +117,7 @@ function FormCreateContrato() {
 
 
           <div className='contenedor-btn'>
-            <button className='btn-cancelar' type='button' onClick={toggle}>Cancelar</button>
+            <button className='btn-cancelar' type='button' onClick={() => handleCancelar()}>Cancelar</button>
             <button className='btn-registrar' type='submit'>Registrar</button>
           </div>
         </form>
@@ -124,4 +125,4 @@ function FormCreateContrato() {
       )
     }
 
-export { FormCreateColaborador };
+export default FormCreateHorario;
