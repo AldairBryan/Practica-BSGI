@@ -1,4 +1,6 @@
 from django.urls import path, include
+
+from Gestion.views.views_create import HorarioCreateAPIView
 from .views.views_list import *
 from .views.views_create import *
 from .views.views_retrieve import *
@@ -16,8 +18,9 @@ urlpatterns = [
 
     #Retrieve
     path("colaborador/<int:pk>/", ColaboradorRetrieveAPIView.as_view(), name='colaborador-detail'),
-    path("contacto/<int:pk>/", ContactoRetrieveAPIView.as_view(), name='colaborador-detail'),
-    path("contrato/<int:pk>/", ContratoRetrieveAPIView.as_view(), name='colaborador-detail'),
-    path("horario/<int:pk>/", HorarioRetrieveAPIView.as_view(), name='colaborador-detail'),
+    path("contacto/<int:pk>/", ContactoRetrieveAPIView.as_view(), name='contacto-detail'),
+    path("contrato/<int:pk>/", ContratoRetrieveAPIView.as_view(), name='contrato-detail'),
+    path("horario/<int:pk>/", HorarioRetrieveAPIView.as_view(), name='horario-detail'),
+    path("horario/create/", HorarioCreateAPIView.as_view(), name='horario-create'),
 
 ]

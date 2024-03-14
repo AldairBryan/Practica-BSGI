@@ -10,11 +10,14 @@ function FormCreateHorario() {
     /*Datos de regiones*/ 
     const [horarios, setHorarios] = useState([]);
     const [colaboradores, setColaboradores] = useState([]);
+    const [colaboradoresSeleccionados, setColaboradoresSeleccionados] = useState([]);
+
     /*Estado de los registros de mi formulario*/
     const {
         register,
         handleSubmit,  
         setValue,
+        getValues,
         formState: { errors },
     } = useForm();
 
@@ -28,12 +31,30 @@ function FormCreateHorario() {
         navigate('/horarios');
     };
     
+    const agregarColaborador = colaborador => {
+        if (colaborador){
+            setColaboradoresSeleccionados([...colaboradoresSeleccionados, colaborador]);
+            setColaboradores(colaboradores.filter(c => c.colcod !== colaborador.colcod));
+            // Actualizar el valor del select
+            setValue('horcolcod', ''); // Limpiar el valor actual
+        }
+    };
+
+    const quitarColaborador = colaborador => {
+        setColaboradoresSeleccionados(colaboradoresSeleccionados.filter(c => c.colcod !== colaborador.colcod));
+        setColaboradores([...colaboradores, colaborador]);
+    };
+
+
+
     // Función llamada al enviar el formulario
     const onSubmit = handleSubmit(async data => {
         try {
+            data.horcolcod = colaboradoresSeleccionados.map(colaborador => colaborador.colcod);
             const res = await createHorario(data);
             navigate('/horarios');
             toast.success('Horario creado con éxito');
+            console.log(data);
         } catch (error) {
             toast.error(`Error al crear el horario: ${error.message}`);
         }
@@ -100,20 +121,45 @@ function FormCreateHorario() {
               />
               {errors.horfin?.type === 'required' && <p className='text-error'>*El campo Hora de Fin es requerido</p>}
             </label>
-          
-          <label>
-                Colaborador
-                <select className='input-select'
-                    name="colaboradores"
-                    {...register('contrcolcod', { required: true })}
+
+            <div>
+                <div>
+                <label>
+                    Colaboradores:
+                    <select
+                        className='input-select'
+                        name="colaboradores"
+                        {...register('horcolcod',
+                        )}
+                        
                     >
-                    <option value='' >Seleccionar Colaborador</option>
-                    {colaboradores && colaboradores.map(colaborador =>(
-                        <option value={colaborador.colcod} key={colaborador.colcod}>{colaborador.colnom+" "+colaborador.colape}</option>
+                        <option value='' >Seleccionar Proyecto</option>
+                        {colaboradores.map(colaborador => (
+                            <option value={colaborador.colcod} key={colaborador.colcod}>
+                                {colaborador.colnom}
+                            </option>
+                        ))}
+                    </select>
+                    <button
+                        type="button"
+                        onClick={() => agregarColaborador(colaboradores.find(c => c.colcod === parseInt(getValues('horcolcod'))))}
+                    >
+                        Agregar
+                    </button>
+                </label>
+                </div>
+                <div>
+                    Colaboradores seleccionados:
+                    {colaboradoresSeleccionados.map(colaborador => (
+                        <div key={colaborador.colcod}>
+                            {colaborador.colnom}
+                            <button type="button" onClick={() => quitarColaborador(colaborador)}>
+                                X
+                            </button>
+                        </div>
                     ))}
-                </select>
-                {errors.pagopeopecod?.type === 'required' && <p className='text-error'>*El campo Colaborador es requerido</p>}  
-            </label>
+                </div>
+                </div>
 
 
           <div className='contenedor-btn'>
