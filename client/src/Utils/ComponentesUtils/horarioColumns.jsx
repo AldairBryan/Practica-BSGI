@@ -19,6 +19,14 @@ export default function horarioColumns() {
                 Header: "Hora de Fin",
                 accessor: "horfin",            
             },
+            {
+                Header: "Colaboradores",
+                accessor: "horcolcod",
+                Cell: ({ row }) => {
+                    const colaboradores = row.values.horcolcod.map(colaborador => `${colaborador.colnom} ${colaborador.colape}`).join(", ");
+                    return colaboradores;
+                },  
+            }
         ],
         []
     );

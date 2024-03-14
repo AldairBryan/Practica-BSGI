@@ -77,12 +77,12 @@ function Horarios() {
 
     <ToastContainer />
     
-    <Modal toggle={handleEdit}>
+    {/* <Modal toggle={handleEdit}>
     </Modal>
 
     <Modal active={activeFormDelete} toggle={handleDelete}>
       <FormDeleteHorario toggle={handleDelete} horarioId={selectedIdHor} loadHorarios={loadHorarios} /> 
-    </Modal>
+    </Modal>*/}
     </>
   )
 }

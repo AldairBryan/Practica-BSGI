@@ -1,11 +1,6 @@
 const menuItems = () => [
     {
         path:"/",
-        name:"Dashboard",
-        iconWhite: "/src/assets/WhiteIcons/ChartIcon.png",
-    },
-    {
-        path:"/colaboradores",
         name:"Colaboradores",
         iconWhite: "/src/assets/WhiteIcons/TareoIcon.png",
     },

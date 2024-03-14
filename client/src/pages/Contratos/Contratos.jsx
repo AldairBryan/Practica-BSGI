@@ -78,12 +78,12 @@ function Contratos() {
 
     <ToastContainer />
     
-    <Modal toggle={handleEdit}>
+    {/*<Modal toggle={handleEdit}>
     </Modal>
 
     <Modal active={activeFormDelete} toggle={handleDelete}>
       <FormDeleteContrato toggle={handleDelete} contratoId={selectedIdCon} loadContratos={loadContratos} /> 
-    </Modal>
+    </Modal>*/}
     </>
   )
 }

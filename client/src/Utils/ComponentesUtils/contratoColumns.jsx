@@ -22,10 +22,9 @@ export default function contratoColumns() {
                 accessor: "contrseg",                
             },
             {
-                Header: "Colaborador",
+                Header: "Colaborador (Nombres y apellidos)",
                 accessor: "contrcolcod",
-                Filter: SelectColumnFilter,
-                filter: 'includes',                   
+                Cell: ({ row }) => `${row.values.contrcolcod.colnom} ${row.values.contrcolcod.colape}`,      
             },
         ],
         []
